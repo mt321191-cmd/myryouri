@@ -237,7 +237,7 @@ export default function RecipeClient({ recipe, allRecipes }: Props) {
           position: sticky; top: 0;
           background: rgba(14,12,9,0.94); backdrop-filter: blur(20px);
           border-bottom: 1px solid var(--border);
-          display: flex; align-items: center; justify-content: space-between;
+          display: flex; align-items: center;
           padding: 12px 20px; z-index: 50;
         }
         .back-btn {
@@ -274,8 +274,6 @@ export default function RecipeClient({ recipe, allRecipes }: Props) {
       <div className="recipe-page-wrap">
         <header className="recipe-page-header">
           <button className="back-btn" onClick={() => window.location.href = '/'}>‹ 戻る</button>
-          <div style={{ fontFamily: "'Playfair Display', serif", fontStyle: 'italic', fontSize: '18px' }}>MyRyouri</div>
-          <div style={{ width: '60px' }} />
         </header>
 
         <div className="sRecipe-inner">
