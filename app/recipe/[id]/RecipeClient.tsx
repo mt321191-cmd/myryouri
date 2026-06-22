@@ -233,19 +233,6 @@ export default function RecipeClient({ recipe, allRecipes }: Props) {
           text-align: center; font-size: 9px; font-weight: 700;
           color: white; line-height: 1.3; padding: 0 3px; z-index: 2;
         }
-        .recipe-page-header {
-          position: sticky; top: 0;
-          background: rgba(14,12,9,0.94); backdrop-filter: blur(20px);
-          border-bottom: 1px solid var(--border);
-          display: flex; align-items: center;
-          padding: 12px 20px; z-index: 50;
-        }
-        .back-btn {
-          background: none; border: none; color: var(--text);
-          font-size: 15px; font-weight: 700; cursor: pointer;
-          font-family: 'Zen Kaku Gothic New', sans-serif;
-          padding: 6px 10px; border-radius: 8px;
-        }
         .rc-detail-panel { display: none; }
         @media (min-width: 768px) {
           .sRecipe-inner {
@@ -272,10 +259,6 @@ export default function RecipeClient({ recipe, allRecipes }: Props) {
       `}</style>
 
       <div className="recipe-page-wrap">
-        <header className="recipe-page-header">
-          <button className="back-btn" onClick={() => window.location.href = '/'}>‹ 戻る</button>
-        </header>
-
         <div className="sRecipe-inner">
           <div>
             {/* レシピカード */}
