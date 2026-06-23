@@ -4,19 +4,19 @@ import BottomNav from './BottomNav'
 import Script from 'next/script'
 
 export const metadata: Metadata = {
-  title: 'MyRyouri — あなただけのレシピフィード',
-  description: 'MyRyouriは、あなたの好みに合わせてAIがレシピを提案するパーソナルレシピアプリです。お気に入り保存・調理記録・ジャンル別フィルターが使えます。',
+  title: 'MyRyouri — 基本のレシピを、手元に。',
+  description: '定番料理の基本をまとめたデジタルレシピ帳。料理中もスクロールなしで材料・手順をサクサク確認できます。肉じゃが、パスタ、本格中華、彩り豊かなサラダまで。',
   openGraph: {
     type: 'website',
-    title: 'MyRyouri — あなただけのレシピフィード',
-    description: 'AIがあなた好みのレシピを提案。お気に入り保存・調理記録・ジャンル別フィルターが使えるパーソナルレシピアプリ。',
+    title: 'MyRyouri — 基本のレシピを、手元に。',
+    description: '定番料理の基本をまとめたデジタルレシピ帳。料理中もスクロールなしで材料・手順をサクサク確認できます。肉じゃが、パスタ、本格中華、彩り豊かなサラダまで。',
     siteName: 'MyRyouri',
     locale: 'ja_JP',
   },
   twitter: {
     card: 'summary',
-    title: 'MyRyouri — あなただけのレシピフィード',
-    description: 'AIがあなた好みのレシピを提案するパーソナルレシピアプリ。',
+    title: 'MyRyouri — 基本のレシピを、手元に。',
+    description: '定番料理の基本をまとめたデジタルレシピ帳。料理中もスクロールなしで確認できます。',
   },
 }
 
