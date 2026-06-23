@@ -32,7 +32,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const recipe = RECIPES.find((r) => r.id === Number(id))
   if (!recipe) return {}
 
-  const description = `${recipe.name}の簡単な作り方。${recipe.sub}。材料・手順をわかりやすく紹介。お気に入り保存や調理記録もできるレシピサイトMyRyouriで紹介しています。`
+  const mainIngs = recipe.ing.filter(i => !i.startsWith('──')).slice(0, 3).map(i => i.split(' ')[0]).join('・')
+  const description = `基本的な${recipe.name}の作り方を紹介。料理しながら片手でサクサク確認できるMyRyouriで、${mainIngs}を使った定番レシピを${recipe.sub}でご覧いただけます。`
 
   return {
     title: `${recipe.name} のレシピ・作り方 | MyRyouri`,

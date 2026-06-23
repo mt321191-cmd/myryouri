@@ -28,10 +28,6 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <head>
-        <link
-          rel="icon"
-          href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥕</text></svg>"
-        />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-J5VGY9WDGY"
           strategy="afterInteractive"
