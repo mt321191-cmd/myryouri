@@ -14,6 +14,7 @@ type Recipe = {
   fallback: string
   ing: string[]
   steps: string[]
+  tips?: string[]
 }
 
 type Props = {
@@ -201,6 +202,21 @@ export default function RecipeClient({ recipe, allRecipes }: Props) {
         .cooked-toggle.on::after { transform: translateX(14px); }
         .cooked-date { font-size: 10px; color: rgba(255,255,255,0.35); padding-left: 2px; min-height: 12px; }
         .tray-wrapper { width: 340px; max-width: 92vw; margin-top: 16px; flex-shrink: 0; }
+        .tips-card {
+          width: 340px; max-width: 92vw; margin-top: 16px; flex-shrink: 0;
+          background: var(--surface); border: 1px solid var(--border);
+          border-radius: 18px; padding: 18px;
+        }
+        .tips-card-title {
+          font-size: 11px; font-weight: 900; color: var(--text-sub);
+          letter-spacing: .1em; margin-bottom: 12px;
+        }
+        .tips-card ul {
+          padding-left: 16px; display: flex; flex-direction: column;
+          gap: 10px; list-style: disc;
+        }
+        .tips-card li { font-size: 13px; color: var(--text); line-height: 1.6; }
+        @media (min-width: 768px) { .tips-card { display: none; } }
         .topbar { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
         .toggle-btn {
           padding: 7px 16px; border-radius: 999px;
@@ -349,6 +365,16 @@ export default function RecipeClient({ recipe, allRecipes }: Props) {
                 })}
               </div>
             </div>
+
+            {/* モバイル用コツカード */}
+            {recipe.tips && recipe.tips.length > 0 && (
+              <div className="tips-card">
+                <div className="tips-card-title">💡 コツ・ポイント</div>
+                <ul>
+                  {recipe.tips.map((tip, i) => <li key={i}>{tip}</li>)}
+                </ul>
+              </div>
+            )}
           </div>
 
           {/* PC用サイドパネル */}
@@ -373,6 +399,16 @@ export default function RecipeClient({ recipe, allRecipes }: Props) {
                 ))}
               </ol>
             </div>
+            {recipe.tips && recipe.tips.length > 0 && (
+              <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '18px', padding: '20px 18px' }}>
+                <div style={{ fontSize: '11px', fontWeight: 900, color: 'var(--text-sub)', letterSpacing: '.1em', marginBottom: '14px' }}>💡 コツ・ポイント</div>
+                <ul style={{ paddingLeft: '16px', display: 'flex', flexDirection: 'column', gap: '10px', listStyle: 'disc' }}>
+                  {recipe.tips.map((tip, i) => (
+                    <li key={i} style={{ fontSize: '13px', color: 'var(--text)', lineHeight: 1.6 }}>{tip}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         </div>
       </div>
