@@ -205,18 +205,39 @@ export default function RecipeClient({ recipe, allRecipes }: Props) {
         .tips-card {
           width: 340px; max-width: 92vw; margin-top: 16px; flex-shrink: 0;
           background: var(--surface); border: 1px solid var(--border);
-          border-radius: 18px; padding: 18px;
+          border-radius: 22px; padding: 24px 22px 26px;
         }
-        .tips-card-title {
-          font-size: 11px; font-weight: 900; color: var(--text-sub);
-          letter-spacing: .1em; margin-bottom: 12px;
-        }
-        .tips-card ul {
-          padding-left: 16px; display: flex; flex-direction: column;
-          gap: 10px; list-style: disc;
-        }
-        .tips-card li { font-size: 13px; color: var(--text); line-height: 1.6; }
         @media (min-width: 768px) { .tips-card { display: none; } }
+        .tips-card-header {
+          display: flex; align-items: center; justify-content: space-between;
+          margin-bottom: 6px;
+        }
+        .tips-card-header-left { display: flex; align-items: center; gap: 10px; }
+        .tips-icon-chip {
+          width: 30px; height: 30px; border-radius: 9px;
+          background: var(--accent-dim);
+          display: flex; align-items: center; justify-content: center;
+          flex-shrink: 0;
+        }
+        .tips-card-title { font-size: 17px; font-weight: 700; color: var(--text); letter-spacing: 0.3px; }
+        .tips-card-count { font-size: 12px; font-weight: 600; color: var(--text-sub); }
+        .tips-card-desc { font-size: 12.5px; color: var(--text-sub); line-height: 1.6; margin: 0 0 20px; }
+        .tips-list { display: flex; flex-direction: column; }
+        .tips-item {
+          display: flex; gap: 14px;
+          padding: 18px 0;
+        }
+        .tips-item:first-child { padding-top: 0; }
+        .tips-item:last-child { padding-bottom: 0; }
+        .tips-item + .tips-item { border-top: 1px solid var(--border); }
+        .tips-number {
+          flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+          background: var(--accent-dim); color: var(--accent);
+          font-size: 13px; font-weight: 700;
+          display: flex; align-items: center; justify-content: center;
+          margin-top: 1px;
+        }
+        .tips-body { flex: 1; min-width: 0; font-size: 13.5px; line-height: 1.85; color: rgba(255,255,255,0.72); }
         .topbar { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
         .toggle-btn {
           padding: 7px 16px; border-radius: 999px;
@@ -369,10 +390,26 @@ export default function RecipeClient({ recipe, allRecipes }: Props) {
             {/* モバイル用コツカード */}
             {recipe.tips && recipe.tips.length > 0 && (
               <div className="tips-card">
-                <div className="tips-card-title">💡 コツ・ポイント</div>
-                <ul>
-                  {recipe.tips.map((tip, i) => <li key={i}>{tip}</li>)}
-                </ul>
+                <div className="tips-card-header">
+                  <div className="tips-card-header-left">
+                    <span className="tips-icon-chip">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M9 18h6M10 21h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.2 1 2V15h6v1.7c0 .8.4 1.5 1 2A7 7 0 0 0 12 2Z"/>
+                      </svg>
+                    </span>
+                    <span className="tips-card-title">コツ・ポイント</span>
+                  </div>
+                  <span className="tips-card-count">{recipe.tips.length} ポイント</span>
+                </div>
+                <p className="tips-card-desc">仕上がりを左右する{recipe.tips.length}つのポイント。</p>
+                <div className="tips-list">
+                  {recipe.tips.map((tip, i) => (
+                    <div key={i} className="tips-item">
+                      <span className="tips-number">{i + 1}</span>
+                      <div className="tips-body">{tip}</div>
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
           </div>
@@ -400,13 +437,27 @@ export default function RecipeClient({ recipe, allRecipes }: Props) {
               </ol>
             </div>
             {recipe.tips && recipe.tips.length > 0 && (
-              <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '18px', padding: '20px 18px' }}>
-                <div style={{ fontSize: '11px', fontWeight: 900, color: 'var(--text-sub)', letterSpacing: '.1em', marginBottom: '14px' }}>💡 コツ・ポイント</div>
-                <ul style={{ paddingLeft: '16px', display: 'flex', flexDirection: 'column', gap: '10px', listStyle: 'disc' }}>
+              <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '22px', padding: '24px 22px 26px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <span style={{ width: '30px', height: '30px', borderRadius: '9px', background: 'var(--accent-dim)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M9 18h6M10 21h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.2 1 2V15h6v1.7c0 .8.4 1.5 1 2A7 7 0 0 0 12 2Z"/>
+                      </svg>
+                    </span>
+                    <span style={{ fontSize: '17px', fontWeight: 700, color: 'var(--text)', letterSpacing: '0.3px' }}>コツ・ポイント</span>
+                  </div>
+                  <span style={{ fontSize: '12px', fontWeight: 600, color: 'var(--text-sub)' }}>{recipe.tips.length} ポイント</span>
+                </div>
+                <p style={{ fontSize: '12.5px', color: 'var(--text-sub)', lineHeight: 1.6, margin: '0 0 20px' }}>仕上がりを左右する{recipe.tips.length}つのポイント。</p>
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
                   {recipe.tips.map((tip, i) => (
-                    <li key={i} style={{ fontSize: '13px', color: 'var(--text)', lineHeight: 1.6 }}>{tip}</li>
+                    <div key={i} style={{ display: 'flex', gap: '14px', padding: i === 0 ? '0 0 18px' : i === recipe.tips!.length - 1 ? '18px 0 0' : '18px 0', borderTop: i > 0 ? '1px solid var(--border)' : 'none' }}>
+                      <span style={{ flexShrink: 0, width: '28px', height: '28px', borderRadius: '50%', background: 'var(--accent-dim)', color: 'var(--accent)', fontSize: '13px', fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '1px' }}>{i + 1}</span>
+                      <div style={{ flex: 1, minWidth: 0, fontSize: '13.5px', lineHeight: 1.85, color: 'rgba(255,255,255,0.72)' }}>{tip}</div>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
             )}
           </div>
