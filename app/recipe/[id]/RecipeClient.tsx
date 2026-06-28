@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react'
 
+type Tip = string | { lead: string; body: string }
+
 type Recipe = {
   id: number
   name: string
@@ -14,7 +16,7 @@ type Recipe = {
   fallback: string
   ing: string[]
   steps: string[]
-  tips?: string[]
+  tips?: Tip[]
 }
 
 type Props = {
@@ -237,7 +239,9 @@ export default function RecipeClient({ recipe, allRecipes }: Props) {
           display: flex; align-items: center; justify-content: center;
           margin-top: 1px;
         }
-        .tips-body { flex: 1; min-width: 0; font-size: 13.5px; line-height: 1.85; color: rgba(255,255,255,0.72); }
+        .tips-text-wrap { flex: 1; min-width: 0; }
+        .tips-lead { font-size: 14.5px; font-weight: 700; color: var(--text); margin-bottom: 5px; letter-spacing: 0.2px; }
+        .tips-body { font-size: 13.5px; line-height: 1.85; color: rgba(255,255,255,0.72); }
         .topbar { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
         .toggle-btn {
           padding: 7px 16px; border-radius: 999px;
@@ -403,12 +407,19 @@ export default function RecipeClient({ recipe, allRecipes }: Props) {
                 </div>
                 <p className="tips-card-desc">仕上がりを左右する{recipe.tips.length}つのポイント。</p>
                 <div className="tips-list">
-                  {recipe.tips.map((tip, i) => (
-                    <div key={i} className="tips-item">
-                      <span className="tips-number">{i + 1}</span>
-                      <div className="tips-body">{tip}</div>
-                    </div>
-                  ))}
+                  {recipe.tips.map((tip, i) => {
+                    const lead = typeof tip === 'object' ? tip.lead : null
+                    const body = typeof tip === 'object' ? tip.body : tip
+                    return (
+                      <div key={i} className="tips-item">
+                        <span className="tips-number">{i + 1}</span>
+                        <div className="tips-text-wrap">
+                          {lead && <div className="tips-lead">{lead}</div>}
+                          <div className="tips-body">{body}</div>
+                        </div>
+                      </div>
+                    )
+                  })}
                 </div>
               </div>
             )}
@@ -451,12 +462,19 @@ export default function RecipeClient({ recipe, allRecipes }: Props) {
                 </div>
                 <p style={{ fontSize: '12.5px', color: 'var(--text-sub)', lineHeight: 1.6, margin: '0 0 20px' }}>仕上がりを左右する{recipe.tips.length}つのポイント。</p>
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
-                  {recipe.tips.map((tip, i) => (
-                    <div key={i} style={{ display: 'flex', gap: '14px', padding: i === 0 ? '0 0 18px' : i === recipe.tips!.length - 1 ? '18px 0 0' : '18px 0', borderTop: i > 0 ? '1px solid var(--border)' : 'none' }}>
-                      <span style={{ flexShrink: 0, width: '28px', height: '28px', borderRadius: '50%', background: 'var(--accent-dim)', color: 'var(--accent)', fontSize: '13px', fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '1px' }}>{i + 1}</span>
-                      <div style={{ flex: 1, minWidth: 0, fontSize: '13.5px', lineHeight: 1.85, color: 'rgba(255,255,255,0.72)' }}>{tip}</div>
-                    </div>
-                  ))}
+                  {recipe.tips.map((tip, i) => {
+                    const lead = typeof tip === 'object' ? tip.lead : null
+                    const body = typeof tip === 'object' ? tip.body : tip
+                    return (
+                      <div key={i} style={{ display: 'flex', gap: '14px', padding: i === 0 ? '0 0 18px' : i === recipe.tips!.length - 1 ? '18px 0 0' : '18px 0', borderTop: i > 0 ? '1px solid var(--border)' : 'none' }}>
+                        <span style={{ flexShrink: 0, width: '28px', height: '28px', borderRadius: '50%', background: 'var(--accent-dim)', color: 'var(--accent)', fontSize: '13px', fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '1px' }}>{i + 1}</span>
+                        <div style={{ flex: 1, minWidth: 0 }}>
+                          {lead && <div style={{ fontSize: '14.5px', fontWeight: 700, color: 'var(--text)', marginBottom: '5px', letterSpacing: '0.2px' }}>{lead}</div>}
+                          <div style={{ fontSize: '13.5px', lineHeight: 1.85, color: 'rgba(255,255,255,0.72)' }}>{body}</div>
+                        </div>
+                      </div>
+                    )
+                  })}
                 </div>
               </div>
             )}

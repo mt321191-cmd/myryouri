@@ -15,7 +15,7 @@ type Recipe = {
   fallback: string
   ing: string[]
   steps: string[]
-  tips?: string[]
+  tips?: (string | { lead: string; body: string })[]
 }
 
 const RECIPES: Recipe[] = recipes as Recipe[]
