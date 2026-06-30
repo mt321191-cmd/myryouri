@@ -33,14 +33,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const recipe = RECIPES.find((r) => r.id === Number(id))
   if (!recipe) return {}
 
-  const mainIngs = recipe.ing.filter(i => !i.startsWith('──')).slice(0, 3).map(i => i.split(' ')[0]).join('・')
-  const description = `基本的な${recipe.name}の作り方を紹介。料理しながら片手でサクサク確認できるMyRyouriで、${mainIngs}を使った定番レシピを${recipe.sub}でご覧いただけます。`
+  const servings = recipe.sub.match(/([0-9]+)人分/)?.[1] ?? '2'
+  const title = `${recipe.name} のレシピ - スクロールなしで作れる | MyRyouri`
+  const description = `${recipe.name}の作り方を、料理中に画面を触らず確認できます。材料・手順を画面切り替えで表示。${servings}人分・${recipe.time}分。`
 
   return {
-    title: `${recipe.name} のレシピ・作り方 | MyRyouri`,
+    title,
     description,
     openGraph: {
-      title: `${recipe.name} のレシピ・作り方 | MyRyouri`,
+      title,
       description,
       type: 'article',
       siteName: 'MyRyouri',
@@ -49,7 +50,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${recipe.name} のレシピ | MyRyouri`,
+      title,
       description,
     },
   }
