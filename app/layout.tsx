@@ -4,18 +4,18 @@ import BottomNav from './BottomNav'
 import Script from 'next/script'
 
 export const metadata: Metadata = {
-  title: 'MyRyouri — 基本のレシピを、手元に。',
+  title: 'MyRyouri — 料理に、集中できる。',
   description: '定番料理の基本をまとめたデジタルレシピ帳。料理中もスクロールなしで材料・手順をサクサク確認できます。肉じゃが、パスタ、本格中華、彩り豊かなサラダまで。',
   openGraph: {
     type: 'website',
-    title: 'MyRyouri — 基本のレシピを、手元に。',
+    title: 'MyRyouri — 料理に、集中できる。',
     description: '定番料理の基本をまとめたデジタルレシピ帳。料理中もスクロールなしで材料・手順をサクサク確認できます。肉じゃが、パスタ、本格中華、彩り豊かなサラダまで。',
     siteName: 'MyRyouri',
     locale: 'ja_JP',
   },
   twitter: {
     card: 'summary',
-    title: 'MyRyouri — 基本のレシピを、手元に。',
+    title: 'MyRyouri — 料理に、集中できる。',
     description: '定番料理の基本をまとめたデジタルレシピ帳。料理中もスクロールなしで確認できます。',
   },
 }
