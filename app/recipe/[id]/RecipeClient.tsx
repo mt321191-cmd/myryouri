@@ -341,7 +341,7 @@ export default function RecipeClient({ recipe, allRecipes }: Props) {
 
               <div className="rc-meta">
                 <h1 className="rc-name">{recipe.name}</h1>
-                <div className="rc-sub">{recipe.sub}</div>
+                <div className="rc-sub">{recipe.genre}・{recipe.time}分・{recipe.sub.match(/([0-9]+)人分/)?.[1]}人分</div>
               </div>
 
               <div className="rc-controls">
